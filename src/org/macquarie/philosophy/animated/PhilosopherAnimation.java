@@ -117,7 +117,7 @@ public class PhilosopherAnimation implements Animatable {
 	/**
 	 * <p>Paint the current state of the dinner party.</p>
 	 * 
-	 * @see org.macquarie.philosophy.Animatable#paint(java.awt.Graphics)
+	 * @see org.macquarie.philosophy.animated.Animatable#paint(java.awt.Graphics)
 	 */
 	@Override
 	public synchronized void paint(Graphics pGraphics) {
@@ -167,7 +167,7 @@ public class PhilosopherAnimation implements Animatable {
 	}
 	
 	/**
-	 * @see org.macquarie.philosophy.Animatable#step()
+	 * @see org.macquarie.philosophy.animated.Animatable#step()
 	 */
 	@Override
 	public synchronized void step() {
@@ -186,7 +186,7 @@ public class PhilosopherAnimation implements Animatable {
 	}
 	
 	/**
-	 * @see org.macquarie.philosophy.Animatable#getWidth()
+	 * @see org.macquarie.philosophy.animated.Animatable#getWidth()
 	 */
 	@Override
 	public int getWidth() {
@@ -194,7 +194,7 @@ public class PhilosopherAnimation implements Animatable {
 	}
 
 	/**
-	 * @see org.macquarie.philosophy.Animatable#getHeight()
+	 * @see org.macquarie.philosophy.animated.Animatable#getHeight()
 	 */
 	@Override
 	public int getHeight() {
