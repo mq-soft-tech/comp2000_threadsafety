@@ -109,7 +109,7 @@ public class Animator extends JPanel implements Runnable {
 	
 	/**
 	 * The <code>paintComponent()</code> method which is called from 
-	 * the event dispatch thread whenever the GUI wants to repaint an
+	 * the event dispatch thread whenever the GUI wants to repaint
 	 * this component.
 	 */
 	public void paintComponent(Graphics pGraphics) {

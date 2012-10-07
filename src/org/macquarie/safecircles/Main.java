@@ -37,7 +37,7 @@ public class Main extends JFrame implements ActionListener{
 	private JPanel mContentPane;
 	
 	/**
-	 * Setup the GUI by calling {@link Responsive#setup()}
+	 * Setup the GUI by calling {@link #setup()}
 	 * and start it running by making it visible.
 	 */
 	private void initApp() {

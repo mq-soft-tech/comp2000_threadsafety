@@ -29,6 +29,17 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+/**
+ * Simple class implementing a thread safe version of the circle drawing animation
+ * from week 8. This implements only the stepping and repainting processes. The 
+ * creation and execution of a thread to actually drive the animation process is
+ * managed by the {@link Animator} class. Consequently this class implements the
+ * {@link Animatable} interface which allows the animator object to communicate
+ * with it.
+ * 
+ * @author Dominic Verity
+ *
+ */
 public class CirclesAnimation implements Animatable {
 	
 	// Class fields and constants
@@ -80,23 +91,40 @@ public class CirclesAnimation implements Animatable {
 	
 	// Methods
 
+	/**
+	 * Step the animation forward by adding an extra randomly generated circle
+	 * to the animation image.
+	 * 
+	 * @see org.macquarie.safecircles.Animatable#step()
+	 */
 	@Override
-	public void step() {
+	public synchronized void step() {
 		int vXord = mGenerator.nextInt(WIDTH - CIRCLE_DIAMETER);
 		int vYord = mGenerator.nextInt(HEIGHT - CIRCLE_DIAMETER);
 		mCanvas.drawOval(vXord, vYord, CIRCLE_DIAMETER, CIRCLE_DIAMETER);	
 	}
 
+	/**
+	 * Paint the current state of the animation onto a specified graphics canvas.
+	 * 
+	 * @see org.macquarie.safecircles.Animatable#paint(java.awt.Graphics)
+	 */
 	@Override
-	public void paint(Graphics pGraphics) {
+	public synchronized void paint(Graphics pGraphics) {
 		pGraphics.drawImage(mImage, 0, 0, null);
 	}
 
+	/**
+	 * @see org.macquarie.safecircles.Animatable#getWidth()
+	 */
 	@Override
 	public int getWidth() {
 		return WIDTH;
 	}
 
+	/**
+	 * @see org.macquarie.safecircles.Animatable#getHeight()
+	 */
 	@Override
 	public int getHeight() {
 		return HEIGHT;
