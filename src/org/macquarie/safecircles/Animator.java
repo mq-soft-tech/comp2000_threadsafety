@@ -101,6 +101,8 @@ public class Animator extends JPanel implements Runnable {
 	
 	/**
 	 * Updates the position of all the components of this animation.
+	 * This also calls the <code>repaint()</code> of this component to inform the 
+	 * event \ dispatch thread that it needs to paint the next frame.</p>
 	 */
 	public void step() {
 		mState.step();
@@ -121,8 +123,7 @@ public class Animator extends JPanel implements Runnable {
 	/**
 	 * <p>The <code>run()</code> method of an animator thread simply loops
 	 * calling <code>step()</code> to update the aggregated {@link Animatable}
-	 * object and then calling <code>repaint()</code> to inform the event \
-	 * dispatch thread that it needs to paint the next frame.</p>
+	 * object.</p>
 	 * 
 	 * <p>We pause between each frame for <code>FRAME_PAUSE</code> milliseconds,
 	 * so decreasing <code>FRAME_PAUSE</code> we can increase the frame rate 
