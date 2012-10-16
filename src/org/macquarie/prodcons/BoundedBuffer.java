@@ -25,19 +25,23 @@ package org.macquarie.prodcons;
 
 /**
  * A thread safe bounded buffer class - which uses a very simple
- * array based queue implementation. Demonstrates the use of
- * synchronisation to ensure consistency and wait() and notify() 
- * methods to handle overflow and underflow situations.
+ * implementation which treats a fixed size array of values as
+ * a circular buffer.
  * 
- * Buffers of this type contain integers.
+ * Demonstrates the use of synchronisation to ensure consistency 
+ * and {@link #wait()} and {@link #notifyAll()} methods to handle 
+ * overflow and underflow situations.
  * 
- * See lecture notes and Jia chapter 11 for more information.
- * Also it is worth looking up Producer-Consumer on Wikipedia.
+ * Buffers of this type are generic, so can hold values of any
+ * (non-primitive) type.
+ * 
+ * See lecture notes for more information. Also it is worth looking 
+ * up Producer-Consumer on Wikipedia.
  * 
  * @author Dominic Verity
  *
  */
-public class BoundedBuffer {
+public class BoundedBuffer<T> {
 
 	// Static data members (constants)
 	
@@ -52,21 +56,28 @@ public class BoundedBuffer {
 	/**
 	 * The array of values stored in this buffer.
 	 */
-	private int[] mValues;
+	private T[] mValues;
 	
 	/**
 	 * Index of the first free location in the buffer.
 	 */
 	private int mNext;
 	
+	/**
+	 * Index of value at head of the queue.
+	 */
+	private int mHead;
+	
 	// Constructors
 	
 	/**
 	 * Default constructor - makes an empty buffer.
 	 */
-	BoundedBuffer () {
-		mValues = new int[CAPACITY];
+	@SuppressWarnings("unchecked")
+	public BoundedBuffer () {
+		mValues = (T[]) new Object[CAPACITY];
 		mNext = 0;
+		mHead = 0;
 	}
 	
 	// Public methods
@@ -74,16 +85,16 @@ public class BoundedBuffer {
 	/**
 	 * Add a new value to the queue.
 	 */
-	public synchronized void put(int pValue) throws InterruptedException {
+	public synchronized void put(T pValue) throws InterruptedException {
 		// First check to see if there is space in the buffer.
-		while (mNext >= CAPACITY) {
+		while (mNext - mHead >= CAPACITY) {
 			System.out.println("Waiting for some buffer space!");
 			wait();		// If there is no space then wait in the wait
 						// queue of this buffer object.
 		}
 		
 		// Now we know there is space so add the new value.
-		mValues[mNext] = pValue;
+		mValues[mNext % CAPACITY] = pValue;
 		
 		// And update next pointer.
 		mNext++;
@@ -100,16 +111,24 @@ public class BoundedBuffer {
 	/**
 	 * Remove a value from the queue and return it.
 	 */
-	public synchronized int get() throws InterruptedException {
+	public synchronized T get() throws InterruptedException {
 		// First check to see if there is anything in the buffer.
-		while (mNext <= 0) {
+		while (mNext - mHead <= 0) {
 			System.out.println("Waiting for a value to become available!");
 			wait();		// If there is nothing there then wait in the wait
 						// queue of this buffer object
 		}
 		
-		// Now we know that a value is present, so update the next pointer
-		mNext--;
+		
+		
+		// Now we know that a value is present, so get the head value
+		T vResult = mValues[mHead++];
+		
+		// Adjust if we've wrapped around in the buffer.
+		if (mHead >= CAPACITY) {
+			mHead -= CAPACITY;
+			mNext -= CAPACITY;
+		}
 		
 		// Finally notify all waiting threads. This will wake each thread in turn,
 		// and if one of those is waiting for a space to become available in the buffer
@@ -121,6 +140,6 @@ public class BoundedBuffer {
 		
 		
 		// And return the retrieved value.
-		return (mValues[mNext]);
+		return vResult;
 	}
 }

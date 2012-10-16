@@ -39,7 +39,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// Create a bounded buffer.
-		BoundedBuffer vBuffer = new BoundedBuffer();
+		BoundedBuffer<Integer> vBuffer = new BoundedBuffer<Integer>();
 		
 		// Create consumer and producer threads which talk with that buffer
 		Producer vProducer = new Producer(vBuffer);

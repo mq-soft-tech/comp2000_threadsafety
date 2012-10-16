@@ -29,7 +29,7 @@ public class Producer extends Thread {
 	
 	// Data members (instance variables)
 	
-	private BoundedBuffer mBuffer;
+	private BoundedBuffer<Integer> mBuffer;
 	
 	// Constructors
 	
@@ -39,7 +39,7 @@ public class Producer extends Thread {
 	 * 
 	 * @param pBuffer the buffer to write values to.
 	 */
-	Producer (BoundedBuffer pBuffer) {
+	Producer (BoundedBuffer<Integer> pBuffer) {
 		mBuffer = pBuffer;
 	}
 

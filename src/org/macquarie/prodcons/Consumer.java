@@ -36,7 +36,7 @@ public class Consumer extends Thread {
 	
 	// Data members (instance variables)
 	
-	private BoundedBuffer mBuffer;
+	private BoundedBuffer<Integer> mBuffer;
 	
 	// Constructors
 	
@@ -46,7 +46,7 @@ public class Consumer extends Thread {
 	 * 
 	 * @param pBuffer the buffer to source values from.
 	 */
-	Consumer (BoundedBuffer pBuffer) {
+	Consumer (BoundedBuffer<Integer> pBuffer) {
 		mBuffer = pBuffer;
 	}
 
