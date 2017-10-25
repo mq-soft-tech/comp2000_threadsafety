@@ -86,7 +86,7 @@ public class Main extends JApplet {
 	 */
 	private void initApp() {
 		// Make the main frame object
-		JFrame vMainFrame = new JFrame("Bouncing Head");
+		JFrame vMainFrame = new JFrame("Philosopher's Dinner Party");
 		vMainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		vMainFrame.setResizable(false);
 		mMainFrame = vMainFrame;

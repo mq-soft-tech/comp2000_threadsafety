@@ -1,0 +1,4 @@
+syntax: glob
+bin
+.idea/.name
+.idea/workspace.xml
