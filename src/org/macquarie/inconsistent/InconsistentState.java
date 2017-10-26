@@ -93,37 +93,34 @@ public class InconsistentState {
 	 */
 	public static void main(String[] args) {
 		mInstance = new InconsistentState();
-		
-		mUpdateThread = new Thread() {
-			public void run() {
-				Random vGenerator = new Random();
-				while (true) {
-					long vNewValue = Math.abs(vGenerator.nextLong()) % 10000;
 
-					System.out.print("Setting value to: ");
-					System.out.println(vNewValue);
-					
-					mInstance.setValues(vNewValue);
+		mUpdateThread = new Thread(() -> {
+			Random vGenerator = new Random();
+			while (true) {
+				long vNewValue = Math.abs(vGenerator.nextLong()) % 10000;
 
-					doPause(7);
-				}
+				System.out.print("Setting value to: ");
+				System.out.println(vNewValue);
+
+				mInstance.setValues(vNewValue);
+
+				doPause(7);
 			}
-		};
-		
-		mValidateThread = new Thread() {
-			public void run() {
-				while (true) {
-					System.out.print("State is currently ");
-					if (mInstance.isConsistent())
-						System.out.println("consistent.");
-					else
-						System.out.println("inconsistent!!!");
+		});
 
-					doPause(11);
-				}
+		mValidateThread = new Thread(() -> {
+			while (true) {
+				System.out.print("State is currently ");
+				if (mInstance.isConsistent())
+					System.out.println("consistent.");
+				else
+					System.out.println("inconsistent!!!");
+
+				doPause(11);
 			}
-		};
-		
+		});
+
+
 		mUpdateThread.start();
 		mValidateThread.start();
 	}
