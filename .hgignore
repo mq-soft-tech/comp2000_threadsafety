@@ -1,4 +1,6 @@
 syntax: glob
 bin
+.DS_Store
 .idea/.name
 .idea/workspace.xml
+.meghanada

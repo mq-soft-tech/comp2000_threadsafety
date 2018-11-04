@@ -66,7 +66,7 @@ public class Philosopher extends Thread {
 	 * take to talk or eat food are scaled by this factor. So the bigger
 	 * we make this the slower the simulation will run.
 	 */
-	private static final int PAUSE = 1000;
+	private static final int PAUSE = 100;
 
 	/**
 	 * A counter used to assign a unique identification number to
