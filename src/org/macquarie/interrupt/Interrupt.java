@@ -1,24 +1,24 @@
 /**
- * This file is part of a project entitled IntroToConcurrency which is provided as
+ * This file is part of a project entitled ThreadSafety which is provided as
  * sample code for the following Macquarie University unit of study:
  * 
- * COMP229 "Object Oriented Programming Practices"
+ * COMP2000 "Object Oriented Programming Practices"
  * 
- * Copyright (c) 2011-2017 Dominic Verity and Macquarie University.
+ * Copyright (c) 2011-2021 Dominic Verity and Macquarie University.
  * 
- * IntroToConcurrency is free software: you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation, either version 3 of the License, or (at your option) any
- * later version.
+ * ThreadSafety is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
  * 
- * IntroToConcurrency is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ * ThreadSafety is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+ * for more details.
  * 
  * You should have received a copy of the GNU Lesser General Public License
- * along with IntroToConcurrency. (See files COPYING and COPYING.LESSER.) If not, see
- * <http://www.gnu.org/licenses/>.
+ * along with ThreadSafety. (See files COPYING and COPYING.LESSER.) If not,
+ * see <http://www.gnu.org/licenses/>.
  */
 
 package org.macquarie.interrupt;
